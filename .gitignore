@@ -1,0 +1,31 @@
+# Ignore TypeScript folder
+Typescript/
+
+# Ignore Python cache files
+Python/**/__pycache__/
+
+# Ignore compiled Python files
+Python/**/*.pyc
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment files
+.env
+
+# Ignore logs
+*.log
+
+# Ignore node_modules
+node_modules/
+
+# Ignore build outputs
+dist/
+build/
+
+# Ignore Python virtual environments
+venv/
