@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 import os
 import json
@@ -8,6 +9,7 @@ load_dotenv()
 from sentiment_analyzers.get_analyzer import get_analyzer
 
 app = Flask(__name__)
+CORS(app) #:TODO da rimuovere se dovesse andare in produzione
 
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 PORT = 3000
@@ -19,9 +21,11 @@ sentiment_analyzer.load_model()
 def search_nearby_restaurants():
     # Recupera i parametri dal body della richiesta
     data = request.get_json()
-    latitude = data.get('latitude', 37.7937)  # valore di default se non fornito
+    print("data", data)
+    latitude = data.get('latitude', 37.7937)
     longitude = data.get('longitude', -122.3965)
     radius = data.get('radius', 500.0)
+
 
     try:
         api_url = 'https://places.googleapis.com/v1/places:searchNearby'
@@ -58,12 +62,23 @@ def search_nearby_restaurants():
 
         print("score", score)
 
-        # Puoi decidere cosa restituire al client
-        return jsonify(response.json())
+        return jsonify("The score is: " + str(score)), 200
 
     except requests.exceptions.RequestException as error:
         print('Errore nella chiamata all\'API Places:', str(error))
         return jsonify({'error': 'Errore nel recupero dei ristoranti vicini'}), 500
 
 if __name__ == '__main__':
-    app.run(port=PORT, debug=True)
+    app.run(port=PORT, debug=False)
+
+
+
+
+"""
+curl -X POST   -H "Content-Type: application/json"   -d '{
+    "latitude": 37.7937,
+    "longitude": -122.3965,
+    "radius": 500.0
+    "type": "restaurant"
+  }'   http://localhost:3000/searchNearbyRestaurants
+"""

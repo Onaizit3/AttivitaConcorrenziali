@@ -1,6 +1,3 @@
-# Ignore TypeScript folder
-Typescript/
-
 # Ignore Python cache files
 Python/**/__pycache__/
 
@@ -15,7 +12,7 @@ Python/**/*.pyc
 Thumbs.db
 
 # Ignore environment files
-.env
+*.env
 
 # Ignore logs
 *.log
@@ -23,9 +20,43 @@ Thumbs.db
 # Ignore node_modules
 node_modules/
 
+# Ignore npm packages
+node_modules/
+
+# Ignore npm debug logs
+npm-debug.log*
+
+# Ignore package-lock.json (if not needed in version control)
+package-lock.json
+
 # Ignore build outputs
 dist/
 build/
 
 # Ignore Python virtual environments
 venv/
+
+
+Typescript/front-end/logs
+*.log
+Typescript/front-end/npm-debug.log*
+Typescript/front-end/yarn-debug.log*
+Typescript/front-end/yarn-error.log*
+Typescript/front-end/pnpm-debug.log*
+Typescript/front-end/lerna-debug.log*
+
+Typescript/front-end/node_modules
+Typescript/front-end/dist
+Typescript/front-end/dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
