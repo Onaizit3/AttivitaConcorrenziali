@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GoogleMapComponent from './GoogleMapComponent';
-import {   Button,   Form,   Select, InputNumber, Card, Row, Col,
+import {   Button,   Form,   Select, InputNumber, Card, Row, Col
 } from 'antd';
 import {smallActivities} from './constants';
 import { Sentiment_service } from './services/sentiment_service';
@@ -43,13 +43,12 @@ const App: React.FC = () => {
       selectedActivity
     )
     .then((response) => {
-      console.log('Risposta dal server:', response);
-      // Gestisci la risposta qui
+      console.log('Risposta:', response);
+      alert(response);
     }
     )
     .catch((error) => {
       console.error('Errore durante la richiesta:', error);
-      // Gestisci l'errore qui
     }
     );
   };

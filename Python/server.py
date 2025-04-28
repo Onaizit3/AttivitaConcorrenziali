@@ -9,7 +9,7 @@ load_dotenv()
 from sentiment_analyzers.get_analyzer import get_analyzer
 
 app = Flask(__name__)
-CORS(app) #:TODO da rimuovere se dovesse andare in produzione
+CORS(app) #:TODO remove if it should go to production
 
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 PORT = 3000
@@ -63,20 +63,9 @@ def search_nearby_restaurants():
         return jsonify("The score is: " + str(score)), 200
 
     except requests.exceptions.RequestException as error:
-        print('Errore nella chiamata all\'API Places:', str(error))
-        return jsonify({'error': 'Errore nel recupero dei ristoranti vicini'}), 500
+        print('Error in the Places API call:', str(error))
+        return jsonify({'error': 'Error retrieving nearby restaurants'}), 500
 
 if __name__ == '__main__':
     app.run(port=PORT, debug=False)
 
-
-
-
-"""
-curl -X POST   -H "Content-Type: application/json"   -d '{
-    "latitude": 37.7937,
-    "longitude": -122.3965,
-    "radius": 500.0
-    "type": "restaurant"
-  }'   http://localhost:3000/searchNearbyRestaurants
-"""
