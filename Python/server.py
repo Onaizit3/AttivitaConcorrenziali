@@ -17,21 +17,19 @@ sentiment_analyzer = get_analyzer("vader")
 sentiment_analyzer.load_model()
 
 
-@app.route('/searchNearbyRestaurants', methods=['POST'])
+@app.route('/searchNearbyRestaurants', methods=['GET'])
 def search_nearby_restaurants():
-    # Recupera i parametri dal body della richiesta
-    data = request.get_json()
-    print("data", data)
-    latitude = data.get('latitude', 37.7937)
-    longitude = data.get('longitude', -122.3965)
-    radius = data.get('radius', 500.0)
 
+    latitude = request.args.get('latitude', default=37.7937, type=float)
+    longitude = request.args.get('longitude', default=-122.3965, type=float)
+    radius = request.args.get('radius', default=500.0, type=float)
+    activity_type = request.args.get('activity_type', default='restaurant', type=str)
 
     try:
         api_url = 'https://places.googleapis.com/v1/places:searchNearby'
 
         request_body = {
-            "includedTypes": ["restaurant"],
+            "includedTypes": [activity_type],
             "maxResultCount": 10,
             "locationRestriction": {
                 "circle": {
