@@ -3,6 +3,8 @@
 ## Overview
 This program helps you find competitiveness scores for various activities in your area. It analyzes and evaluates the level of competition among businesses and services in a specified location.
 
+Currently, the algorithm simply calculates the average sentiment analysis of nearby activities to determine competitiveness scores.
+
 ## Setup Instructions
 
 ### API Keys
