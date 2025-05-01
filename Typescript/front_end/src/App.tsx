@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import GoogleMapComponent from './GoogleMapComponent';
-import {   Button,   Form,   Select, InputNumber, Card, Row, Col
-} from 'antd';
-import {smallActivities} from './constants';
+import {  Button,  Form,  Select,  InputNumber,  Card,  Row,  Col} from 'antd';
+import { smallActivities } from './constants';
 import { Sentiment_service } from './services/sentiment_service';
 
 const { Option } = Select;
 
 const App: React.FC = () => {
   const [selectedCoordinates, setSelectedCoordinates] = useState<{ lat: number; lng: number } | null>(null);
-  const [range, setRange] = useState<number>(1000); // Default 1000 metri
+  const [range, setRange] = useState<number>(1000); // Default 1000 meters
   const [selectedActivity, setSelectedActivity] = useState<string>('');
   const googleApiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
   const handleCoordinateSelect = (coordinates: { lat: number; lng: number }) => {
-    console.log('Coordinate selezionate:', coordinates);
+    console.log('Selected coordinates:', coordinates);
     setSelectedCoordinates(coordinates);
   };
 
@@ -43,14 +42,12 @@ const App: React.FC = () => {
       selectedActivity
     )
     .then((response) => {
-      console.log('Risposta:', response);
+      console.log('Response:', response);
       alert(response);
-    }
-    )
+    })
     .catch((error) => {
-      console.error('Errore durante la richiesta:', error);
-    }
-    );
+      console.error('Error during request:', error);
+    });
   };
 
   return (
@@ -61,7 +58,6 @@ const App: React.FC = () => {
         
         {/* Map component */}
         <Col span={15} style={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
-
           <GoogleMapComponent 
             apiKey={googleApiKey} 
             onCoordinateSelect={handleCoordinateSelect} 
@@ -83,7 +79,7 @@ const App: React.FC = () => {
                   min={-90}
                   max={90}
                   precision={6}
-                  placeholder="Inserisci la latitudine (-90 a 90)"
+                  placeholder="Enter latitude (–90 to 90)"
                 />
               </Form.Item>
               
@@ -95,27 +91,27 @@ const App: React.FC = () => {
                   min={-180}
                   max={180}
                   precision={6}
-                  placeholder="Inserisci la longitudine (-180 a 180)"
+                  placeholder="Enter longitude (–180 to 180)"
                 />
               </Form.Item>
               
-              <Form.Item label="Range in metri">
+              <Form.Item label="Range (meters)">
                 <InputNumber
                   value={range}
                   onChange={handleRangeChange}
                   style={{ width: '100%' }}
                   min={1}
                   max={50000}
-                  placeholder="Inserisci il raggio in metri"
+                  placeholder="Enter range in meters"
                 />
               </Form.Item>
               
-              <Form.Item label="Attività">
+              <Form.Item label="Activity">
                 <Select
                   value={selectedActivity}
                   onChange={handleActivityChange}
                   style={{ width: '100%' }}
-                  placeholder="Seleziona un'attività"
+                  placeholder="Select an activity"
                 >
                   {smallActivities.map((activity) => (
                     <Option key={activity} value={activity}>
@@ -144,3 +140,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
