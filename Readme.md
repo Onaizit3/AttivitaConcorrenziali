@@ -22,8 +22,8 @@ The higher the score, the more competition there is in the area.
    https://console.cloud.google.com  
 2. Select an existing project or click **Create Project** to make a new one.  
 3. In the left-hand menu, navigate to **APIs & Services > Library**.  
-4. Search for **Places API (new)** and **Maps JavaScript API**, then click **Enable** on each tile. :contentReference[oaicite:0]{index=0}
-5. Go to **APIs & Services > Credentials**, then click **Create credentials > API key**. Copy the key shown. :contentReference[oaicite:1]{index=1}
+4. Search for **Places API (new)** and **Maps JavaScript API**, then click **Enable** on each tile.
+5. Go to **APIs & Services > Credentials**, then click **Create credentials > API key**. Copy the key shown.
 
 ### Backend (Python)
 1. Create a virtual environment:
